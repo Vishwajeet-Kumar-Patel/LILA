@@ -7,7 +7,7 @@ services:
     plan: free
     envVars:
       - key: NAKAMA_DATABASE_ADDRESS
-        sync: false # Set by user to Neon/Supabase DATABASE_URL
+        sync: false # Set in Render dashboard (format: postgresql://USER:PASS@HOST:PORT/DB?sslmode=require)
       - key: NAKAMA_LOGGER_LEVEL
         value: INFO
     healthCheckPath: /
