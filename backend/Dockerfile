@@ -15,5 +15,6 @@ FROM heroiclabs/nakama:3.18.0
 COPY --from=builder /backend/modules/*.js /nakama/data/modules/
 COPY --from=builder /backend/entrypoint.sh /nakama/data/entrypoint.sh
 
-# Render uses $PORT, we override Nakama's default 7350
+# Override the default Nakama entrypoint to allow our script to run
+ENTRYPOINT []
 CMD ["/bin/sh", "/nakama/data/entrypoint.sh"]
