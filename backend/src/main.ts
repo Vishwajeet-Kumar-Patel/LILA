@@ -178,7 +178,16 @@ const matchLoop: nkruntime.MatchLoopFunction<GameState> = function (
         return;
       }
       state.turn = state.turn === Mark.X ? Mark.O : Mark.X;
-      dispatcher.broadcastMessage(OpCode.UPDATE, JSON.stringify({ board: state.board, turn: state.turn, status: state.status, timer: state.timer }));
+      const playerMarkers: { [key: string]: number } = {};
+      state.players.forEach(p => { if (p) playerMarkers[p.presence.userId] = p.mark; });
+      
+      dispatcher.broadcastMessage(OpCode.UPDATE, JSON.stringify({ 
+        board: state.board, 
+        turn: state.turn, 
+        status: state.status, 
+        timer: state.timer,
+        playerMarkers: playerMarkers 
+      }));
     }
   });
 
@@ -188,8 +197,10 @@ const matchLoop: nkruntime.MatchLoopFunction<GameState> = function (
       state.status = GameStatus.FINISHED;
       state.winner = state.turn === Mark.X ? Mark.O : Mark.X;
       dispatcher.broadcastMessage(OpCode.GAME_OVER, JSON.stringify({ board: state.board, winner: state.winner, reason: "Time expired", status: state.status }));
-    } else if (tick % 5 === 0) {
-      dispatcher.broadcastMessage(OpCode.UPDATE, JSON.stringify({ timer: state.timer }));
+    } else if (tick % 2 === 0) {
+      const playerMarkers: { [key: string]: number } = {};
+      state.players.forEach(p => { if (p) playerMarkers[p.presence.userId] = p.mark; });
+      dispatcher.broadcastMessage(OpCode.UPDATE, JSON.stringify({ timer: state.timer, playerMarkers: playerMarkers }));
     }
   }
   return { state };
