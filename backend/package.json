@@ -4,8 +4,8 @@
   "description": "Nakama TypeScript Backend for Tic-Tac-Toe",
   "main": "build/main.js",
   "scripts": {
-    "build": "npx tsc src/main.ts --outfile modules/main.js --target es2015 --lib es2015 --noImplicitAny false --module none",
-    "watch": "npx tsc src/main.ts --outfile modules/main.js --target es2015 --lib es2015 --noImplicitAny false --module none --watch"
+    "build": "npx tsc src/main.ts --outfile modules/main.js --target es2015 --lib es2015 --noImplicitAny false --module none --skipLibCheck true",
+    "watch": "npx tsc src/main.ts --outfile modules/main.js --target es2015 --lib es2015 --noImplicitAny false --module none --watch --skipLibCheck true"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^29.0.2",
