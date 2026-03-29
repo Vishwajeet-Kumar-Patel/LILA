@@ -1,0 +1,24 @@
+# Node modules
+node_modules/
+*/node_modules/
+
+# Build artifacts
+dist/
+*/dist/
+build/
+*/build/
+modules/
+*/modules/*.js
+
+# IDEs
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.local
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
