@@ -1,10 +1,15 @@
 FROM node:18-alpine AS builder
 
+# Add git as it's required to install dependencies from GitHub
+RUN apk add --no-cache git
+
 WORKDIR /backend
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build
+
+# Ensure the modules directory exists and build
+RUN mkdir -p modules && npm run build
 
 FROM heroiclabs/nakama:3.18.0
 COPY --from=builder /backend/modules/*.js /nakama/data/modules/
