@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: lila-backend
+    runtime: docker
+    dockerContext: backend
+    dockerfilePath: Dockerfile
+    plan: free
+    envVars:
+      - key: NAKAMA_DATABASE_ADDRESS
+        sync: false # Set by user to Neon/Supabase DATABASE_URL
+      - key: NAKAMA_LOGGER_LEVEL
+        value: INFO
+    healthCheckPath: /
