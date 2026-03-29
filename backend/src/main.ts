@@ -1,49 +1,50 @@
 // Combined Nakama Backend Logic for Tic-Tac-Toe
+/// <reference types="nakama-runtime" />
 
 enum Mark {
-    EMPTY = 0,
-    X = 1,
-    O = 2
+  EMPTY = 0,
+  X = 1,
+  O = 2
 }
 
 enum GameStatus {
-    WAITING = 0,
-    PLAYING = 1,
-    FINISHED = 2
+  WAITING = 0,
+  PLAYING = 1,
+  FINISHED = 2
 }
 
 interface Player {
-    presence: any;
-    mark: Mark;
+  presence: any;
+  mark: Mark;
 }
 
 interface GameState {
-    board: Mark[];
-    players: (Player | null)[];
-    turn: Mark;
-    winner: Mark | null;
-    status: GameStatus;
-    timer: number;
+  board: Mark[];
+  players: (Player | null)[];
+  turn: Mark;
+  winner: Mark | null;
+  status: GameStatus;
+  timer: number;
 }
 
 const WIN_COMBINATIONS = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8],
-    [0, 3, 6], [1, 4, 7], [2, 5, 8],
-    [0, 4, 8], [2, 4, 6]
+  [0, 1, 2], [3, 4, 5], [6, 7, 8],
+  [0, 3, 6], [1, 4, 7], [2, 5, 8],
+  [0, 4, 8], [2, 4, 6]
 ];
 
 function checkWinner(board: Mark[]): Mark | null {
-    for (const combo of WIN_COMBINATIONS) {
-        const [a, b, c] = combo;
-        if (board[a] !== Mark.EMPTY && board[a] === board[b] && board[a] === board[c]) {
-            return board[a];
-        }
+  for (const combo of WIN_COMBINATIONS) {
+    const [a, b, c] = combo;
+    if (board[a] !== Mark.EMPTY && board[a] === board[b] && board[a] === board[c]) {
+      return board[a];
     }
-    return null;
+  }
+  return null;
 }
 
 function isDraw(board: Mark[]): boolean {
-    return board.every(cell => cell !== Mark.EMPTY);
+  return board.every(cell => cell !== Mark.EMPTY);
 }
 
 enum OpCode {
@@ -97,18 +98,18 @@ const matchJoin: nkruntime.MatchJoinFunction<GameState> = function (
     state.status = GameStatus.PLAYING;
     state.timer = 30;
 
-    const playerMarkers: {[key: string]: number} = {};
+    const playerMarkers: { [key: string]: number } = {};
     state.players.forEach(p => {
-        if (p) playerMarkers[p.presence.userId] = p.mark;
+      if (p) playerMarkers[p.presence.userId] = p.mark;
     });
 
     dispatcher.broadcastMessage(OpCode.UPDATE, JSON.stringify({
-        board: state.board,
-        turn: state.turn,
-        status: state.status,
-        winner: state.winner,
-        timer: state.timer,
-        playerMarkers: playerMarkers
+      board: state.board,
+      turn: state.turn,
+      status: state.status,
+      winner: state.winner,
+      timer: state.timer,
+      playerMarkers: playerMarkers
     }));
   }
   return { state };
@@ -127,13 +128,13 @@ const matchLeave: nkruntime.MatchLeaveFunction<GameState> = function (
   });
 
   if (state.status === GameStatus.PLAYING && (state.players[0] === null || state.players[1] === null)) {
-      state.status = GameStatus.FINISHED;
-      state.winner = state.players[0] ? Mark.X : Mark.O;
-      dispatcher.broadcastMessage(OpCode.GAME_OVER, JSON.stringify({
-          winner: state.winner,
-          status: state.status,
-          reason: "Opponent left"
-      }));
+    state.status = GameStatus.FINISHED;
+    state.winner = state.players[0] ? Mark.X : Mark.O;
+    dispatcher.broadcastMessage(OpCode.GAME_OVER, JSON.stringify({
+      winner: state.winner,
+      status: state.status,
+      reason: "Opponent left"
+    }));
   }
 
   if (state.players[0] === null && state.players[1] === null) {
@@ -161,7 +162,7 @@ const matchLoop: nkruntime.MatchLoopFunction<GameState> = function (
       try { payload = JSON.parse(nk.binaryToString(msg.data)); } catch { return; }
       const position = payload.position;
       if (position < 0 || position > 8 || state.board[position] !== Mark.EMPTY) return;
-      
+
       state.board[position] = playerMark;
       state.timer = 30;
       const winner = checkWinner(state.board);
@@ -198,28 +199,28 @@ const matchTerminate: nkruntime.MatchTerminateFunction<GameState> = function (ct
 const matchSignal: nkruntime.MatchSignalFunction<GameState> = function (ctx, logger, nk, dispatcher, tick, state, data) { return { state, result: data }; };
 
 function createMatch(ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, payload: string): string {
-    const matchId = nk.matchCreate("tic-tac-toe", {});
-    return JSON.stringify({ matchId });
+  const matchId = nk.matchCreate("tic-tac-toe", {});
+  return JSON.stringify({ matchId });
 }
 
 function findMatch(ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, payload: string): string {
-    const matches = nk.matchList(10, true, "tic-tac-toe", 0, 1);
-    if (matches.length > 0) return JSON.stringify({ matchId: matches[0].matchId });
-    const matchId = nk.matchCreate("tic-tac-toe", {});
-    return JSON.stringify({ matchId });
+  const matches = nk.matchList(10, true, "tic-tac-toe", 0, 1);
+  if (matches.length > 0) return JSON.stringify({ matchId: matches[0].matchId });
+  const matchId = nk.matchCreate("tic-tac-toe", {});
+  return JSON.stringify({ matchId });
 }
 
 function InitModule(ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, initializer: nkruntime.Initializer) {
-    logger.info("Tic-Tac-Toe module LOADED successfully (FULL SCRIPT)");
-    initializer.registerRpc("create_match", createMatch);
-    initializer.registerRpc("find_match", findMatch);
-    initializer.registerMatch("tic-tac-toe", {
-        matchInit: matchInit,
-        matchJoinAttempt: matchJoinAttempt,
-        matchJoin: matchJoin,
-        matchLeave: matchLeave,
-        matchLoop: matchLoop,
-        matchTerminate: matchTerminate,
-        matchSignal: matchSignal
-    });
+  logger.info("Tic-Tac-Toe module LOADED successfully (FULL SCRIPT)");
+  initializer.registerRpc("create_match", createMatch);
+  initializer.registerRpc("find_match", findMatch);
+  initializer.registerMatch("tic-tac-toe", {
+    matchInit: matchInit,
+    matchJoinAttempt: matchJoinAttempt,
+    matchJoin: matchJoin,
+    matchLeave: matchLeave,
+    matchLoop: matchLoop,
+    matchTerminate: matchTerminate,
+    matchSignal: matchSignal
+  });
 }
