@@ -1,0 +1,10 @@
+﻿{"level":"info","ts":"2026-03-29T04:52:00.705Z","caller":"server/runtime.go:626","msg":"Initialising runtime","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T04:52:00.715Z","caller":"server/runtime.go:633","msg":"Initialising runtime event queue processor"}
+{"level":"info","ts":"2026-03-29T04:52:00.716Z","caller":"server/runtime.go:635","msg":"Runtime event queue processor started","size":65536,"workers":8}
+{"level":"info","ts":"2026-03-29T04:52:00.716Z","caller":"server/runtime_go.go:2671","msg":"Initialising Go runtime provider","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T04:52:00.716Z","caller":"server/runtime_go.go:2695","msg":"Go runtime modules loaded"}
+{"level":"info","ts":"2026-03-29T04:52:00.716Z","caller":"server/runtime_lua.go:115","msg":"Initialising Lua runtime provider","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T04:52:00.717Z","caller":"server/runtime_lua.go:1208","msg":"Lua runtime modules loaded"}
+{"level":"info","ts":"2026-03-29T04:52:00.717Z","caller":"server/runtime_lua.go:1211","msg":"Allocating minimum Lua runtime pool","count":16}
+{"level":"info","ts":"2026-03-29T04:52:00.717Z","caller":"server/runtime_lua.go:1219","msg":"Allocated minimum Lua runtime pool"}
+{"level":"info","ts":"2026-03-29T04:52:00.717Z","caller":"server/runtime_javascript.go:634","msg":"Initialising JavaScript runtime provider","path":"/nakama/data/modules","entrypoint":"main.js"}

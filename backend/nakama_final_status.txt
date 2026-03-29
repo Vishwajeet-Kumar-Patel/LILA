@@ -1,0 +1,20 @@
+﻿{"level":"info","ts":"2026-03-29T04:23:41.490Z","caller":"main.go:106","msg":"Node","name":"nakama-server","version":"3.18.0+095c7a66","runtime":"go1.21.3","cpu":12,"proc":12}
+{"level":"info","ts":"2026-03-29T04:23:41.490Z","caller":"main.go:107","msg":"Data directory","path":"/nakama/data"}
+{"level":"info","ts":"2026-03-29T04:23:41.490Z","caller":"main.go:118","msg":"Database connections","dsns":["root@cockroachdb:26257"]}
+{"level":"debug","ts":"2026-03-29T04:23:41.492Z","caller":"server/db.go:74","msg":"Complete database connection URL","raw_url":"postgres://root@cockroachdb:26257/nakama?sslmode=prefer"}
+{"level":"info","ts":"2026-03-29T04:23:41.502Z","caller":"main.go:124","msg":"Database information","version":"CockroachDB CCL v23.1.10 (x86_64-pc-linux-gnu, built 2023/09/14 14:09:38, go1.19.10)"}
+{"level":"info","ts":"2026-03-29T04:23:41.527Z","caller":"server/leaderboard_rank_cache.go:122","msg":"Initializing leaderboard rank cache"}
+{"level":"info","ts":"2026-03-29T04:23:41.529Z","caller":"server/runtime.go:626","msg":"Initialising runtime","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T04:23:41.529Z","caller":"server/leaderboard_rank_cache.go:183","msg":"Leaderboard rank cache initialization completed successfully","cached":[],"skipped":[],"duration":"996.497┬╡s"}
+{"level":"info","ts":"2026-03-29T04:23:41.536Z","caller":"server/runtime.go:633","msg":"Initialising runtime event queue processor"}
+{"level":"info","ts":"2026-03-29T04:23:41.537Z","caller":"server/runtime.go:635","msg":"Runtime event queue processor started","size":65536,"workers":8}
+{"level":"info","ts":"2026-03-29T04:23:41.537Z","caller":"server/runtime_go.go:2671","msg":"Initialising Go runtime provider","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T04:23:41.537Z","caller":"server/runtime_go.go:2695","msg":"Go runtime modules loaded"}
+{"level":"info","ts":"2026-03-29T04:23:41.537Z","caller":"server/runtime_lua.go:115","msg":"Initialising Lua runtime provider","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T04:23:41.537Z","caller":"server/runtime_lua.go:1208","msg":"Lua runtime modules loaded"}
+{"level":"info","ts":"2026-03-29T04:23:41.537Z","caller":"server/runtime_lua.go:1211","msg":"Allocating minimum Lua runtime pool","count":16}
+{"level":"info","ts":"2026-03-29T04:23:41.538Z","caller":"server/runtime_lua.go:1219","msg":"Allocated minimum Lua runtime pool"}
+{"level":"info","ts":"2026-03-29T04:23:41.538Z","caller":"server/runtime_javascript.go:634","msg":"Initialising JavaScript runtime provider","path":"/nakama/data/modules","entrypoint":"main.js"}
+{"level":"error","ts":"2026-03-29T04:23:41.548Z","caller":"server/runtime_javascript.go:1682","msg":"Failed to eval JavaScript modules.","error":"GoError: failed to find InitModule function\n\tat github.com/heroiclabs/nakama/v3/server.(*RuntimeJavascriptInitModule).mappings.(*RuntimeJavascriptInitModule).registerMatch.func12 (native)\n\tat InitModule (main.js:212:34(19))\n"}
+{"level":"error","ts":"2026-03-29T04:23:41.548Z","caller":"server/runtime.go:653","msg":"Error initialising JavaScript runtime provider","error":"GoError: failed to find InitModule function\n\tat github.com/heroiclabs/nakama/v3/server.(*RuntimeJavascriptInitModule).mappings.(*RuntimeJavascriptInitModule).registerMatch.func12 (native)\n\tat InitModule (main.js:212:34(19))\n"}
+{"level":"fatal","ts":"2026-03-29T04:23:41.548Z","caller":"main.go:157","msg":"Failed initializing runtime modules","error":"GoError: failed to find InitModule function\n\tat github.com/heroiclabs/nakama/v3/server.(*RuntimeJavascriptInitModule).mappings.(*RuntimeJavascriptInitModule).registerMatch.func12 (native)\n\tat InitModule (main.js:212:34(19))\n"}

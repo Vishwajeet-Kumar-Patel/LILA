@@ -1,0 +1,87 @@
+﻿
+> nakama-tictactoe-backend@1.0.0 build
+> npx rollup -c rollup.config.mjs
+
+node.exe : [36m
+At C:\nvm4w\nodejs\npm.ps1
+:16 char:5
++     & 
+"$basedir/node$exe"  "$bas
+edir/node_modules/npm/bin/
+npm-cli.js" ...
++     ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (  
+  [36m:String) [], Remo   
+ teException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+[1msrc/main.ts[22m ΓåÆ 
+[1mbuild/main.js[22m...[
+39m
+[1m[31m[!] [1m(plugin 
+typescript) RollupError: 
+[plugin typescript] @rollu
+p/plugin-typescript: 
+Could not find module 
+'tslib', which is 
+required by this plugin. 
+Is it installed?[22m[1m
+[39m[22m
+[2m    at getRollupError 
+(C:\Users\vishw\OneDrive\D
+esktop\Game\LILA\backend\n
+ode_modules\rollup\dist\sh
+ared\parseAst.js:289:41)
+    at Object.error (C:\Us
+ers\vishw\OneDrive\Desktop
+\Game\LILA\backend\node_mo
+dules\rollup\dist\shared\p
+arseAst.js:285:42)
+    at Object.error (C:\Us
+ers\vishw\OneDrive\Desktop
+\Game\LILA\backend\node_mo
+dules\rollup\dist\shared\r
+ollup.js:913:32)
+    at preflight (file:///
+C:/Users/vishw/OneDrive/De
+sktop/Game/LILA/backend/no
+de_modules/@rollup/plugin-
+typescript/dist/es/index.j
+s:541:17)
+    at Object.buildStart (
+file:///C:/Users/vishw/One
+Drive/Desktop/Game/LILA/ba
+ckend/node_modules/@rollup
+/plugin-typescript/dist/es
+/index.js:892:13)
+    at C:\Users\vishw\OneD
+rive\Desktop\Game\LILA\bac
+kend\node_modules\rollup\d
+ist\shared\rollup.js:3392:
+40
+    at async Promise.all 
+(index 0)
+    at 
+PluginDriver.hookParallel 
+(C:\Users\vishw\OneDrive\D
+esktop\Game\LILA\backend\n
+ode_modules\rollup\dist\sh
+ared\rollup.js:3302:9)
+    at C:\Users\vishw\OneD
+rive\Desktop\Game\LILA\bac
+kend\node_modules\rollup\d
+ist\shared\rollup.js:23845
+:13
+    at catchUnfinishedHook
+Actions (C:\Users\vishw\On
+eDrive\Desktop\Game\LILA\b
+ackend\node_modules\rollup
+\dist\shared\rollup.js:233
+52:16)[22m
+
+

@@ -1,0 +1,38 @@
+services:
+  cockroachdb:
+    container_name: cockroachdb
+    image: cockroachdb/cockroach:v23.1.10
+    command: start-single-node --insecure
+    restart: always
+    volumes:
+      - cockroach-data:/cockroach/cockroach-data
+    ports:
+      - "26257:26257"
+      - "8080:8080"
+
+  nakama:
+    container_name: nakama
+    image: heroiclabs/nakama:3.18.0
+    restart: always
+    depends_on:
+      - cockroachdb
+    entrypoint:
+      - "/bin/sh"
+      - "-ecx"
+      - |
+        sleep 10
+        /nakama/nakama migrate up --database.address root@cockroachdb:26257 &&
+        exec /nakama/nakama \
+        --name nakama1 \
+        --database.address root@cockroachdb:26257 \
+        --logger.level DEBUG
+    volumes:
+      - ./data:/nakama/data
+      - ./build:/nakama/data/modules
+    ports:
+      - "7349:7349"
+      - "7350:7350"
+      - "7351:7351"
+
+volumes:
+  cockroach-data:
