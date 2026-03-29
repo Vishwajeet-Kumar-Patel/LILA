@@ -6,17 +6,16 @@ import json from '@rollup/plugin-json';
 export default {
   input: 'src/main.ts',
   output: {
-    file: 'build/main.js',
-    format: 'cjs',
-    sourcemap: false,
+    file: 'modules/main.js',
+    format: "iife"
   },
   plugins: [
     typescript(),
     resolve({
       extensions: ['.ts', '.js'],
-      preferBuiltins: false,
+      preferBuiltins: false
     }),
     commonjs(),
-    json(),
-  ],
+    json()
+  ]
 };

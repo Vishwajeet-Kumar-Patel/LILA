@@ -1,20 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
-    "outDir": "./build",
-    "rootDir": "./src",
+    "target": "ESNext",
+    "moduleResolution": "Node",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "sourceMap": false,
-    "declaration": false,
-    "lib": ["ESNext", "DOM"],
-    "types": ["nakama-runtime"]
+    "types": [
+      "nakama-runtime"
+    ]
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*",
+    "types"
+  ]
 }

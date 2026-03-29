@@ -1,0 +1,58 @@
+﻿{"level":"info","ts":"2026-03-29T07:56:58.574Z","caller":"migrate/migrate.go:155","msg":"Database connection","dsn":"postgres://root@cockroachdb:26257/nakama?sslmode=prefer"}
+{"level":"info","ts":"2026-03-29T07:56:58.591Z","caller":"migrate/migrate.go:203","msg":"Database information","version":"CockroachDB CCL v23.1.10 (x86_64-pc-linux-gnu, built 2023/09/14 14:09:38, go1.19.10)"}
+{"level":"info","ts":"2026-03-29T07:56:58.616Z","caller":"migrate/migrate.go:226","msg":"Successfully applied migration","count":0}
+{"level":"warn","ts":"2026-03-29T07:56:58.640Z","caller":"server/config.go:324","msg":"WARNING: insecure default parameter value, change this for production!","param":"console.username"}
+{"level":"warn","ts":"2026-03-29T07:56:58.640Z","caller":"server/config.go:328","msg":"WARNING: insecure default parameter value, change this for production!","param":"console.password"}
+{"level":"warn","ts":"2026-03-29T07:56:58.640Z","caller":"server/config.go:332","msg":"WARNING: insecure default parameter value, change this for production!","param":"console.signing_key"}
+{"level":"warn","ts":"2026-03-29T07:56:58.640Z","caller":"server/config.go:336","msg":"WARNING: insecure default parameter value, change this for production!","param":"socket.server_key"}
+{"level":"warn","ts":"2026-03-29T07:56:58.640Z","caller":"server/config.go:340","msg":"WARNING: insecure default parameter value, change this for production!","param":"session.encryption_key"}
+{"level":"warn","ts":"2026-03-29T07:56:58.640Z","caller":"server/config.go:344","msg":"WARNING: insecure default parameter value, change this for production!","param":"session.refresh_encryption_key"}
+{"level":"warn","ts":"2026-03-29T07:56:58.640Z","caller":"server/config.go:348","msg":"WARNING: insecure default parameter value, change this for production!","param":"runtime.http_key"}
+{"level":"info","ts":"2026-03-29T07:56:58.640Z","caller":"main.go:105","msg":"Nakama starting"}
+{"level":"info","ts":"2026-03-29T07:56:58.640Z","caller":"main.go:106","msg":"Node","name":"nakama1","version":"3.18.0+095c7a66","runtime":"go1.21.3","cpu":12,"proc":12}
+{"level":"info","ts":"2026-03-29T07:56:58.640Z","caller":"main.go:107","msg":"Data directory","path":"/nakama/data"}
+{"level":"info","ts":"2026-03-29T07:56:58.640Z","caller":"main.go:118","msg":"Database connections","dsns":["root@cockroachdb:26257"]}
+{"level":"debug","ts":"2026-03-29T07:56:58.641Z","caller":"server/db.go:74","msg":"Complete database connection URL","raw_url":"postgres://root@cockroachdb:26257/nakama?sslmode=prefer"}
+{"level":"info","ts":"2026-03-29T07:56:58.646Z","caller":"main.go:124","msg":"Database information","version":"CockroachDB CCL v23.1.10 (x86_64-pc-linux-gnu, built 2023/09/14 14:09:38, go1.19.10)"}
+{"level":"info","ts":"2026-03-29T07:56:58.663Z","caller":"server/leaderboard_rank_cache.go:122","msg":"Initializing leaderboard rank cache"}
+{"level":"info","ts":"2026-03-29T07:56:58.664Z","caller":"server/runtime.go:626","msg":"Initialising runtime","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T07:56:58.664Z","caller":"server/leaderboard_rank_cache.go:183","msg":"Leaderboard rank cache initialization completed successfully","cached":[],"skipped":[],"duration":"1.168174ms"}
+{"level":"info","ts":"2026-03-29T07:56:58.667Z","caller":"server/runtime.go:633","msg":"Initialising runtime event queue processor"}
+{"level":"info","ts":"2026-03-29T07:56:58.668Z","caller":"server/runtime.go:635","msg":"Runtime event queue processor started","size":65536,"workers":8}
+{"level":"info","ts":"2026-03-29T07:56:58.668Z","caller":"server/runtime_go.go:2671","msg":"Initialising Go runtime provider","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T07:56:58.668Z","caller":"server/runtime_go.go:2695","msg":"Go runtime modules loaded"}
+{"level":"info","ts":"2026-03-29T07:56:58.668Z","caller":"server/runtime_lua.go:115","msg":"Initialising Lua runtime provider","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T07:56:58.668Z","caller":"server/runtime_lua.go:1208","msg":"Lua runtime modules loaded"}
+{"level":"info","ts":"2026-03-29T07:56:58.668Z","caller":"server/runtime_lua.go:1211","msg":"Allocating minimum Lua runtime pool","count":16}
+{"level":"info","ts":"2026-03-29T07:56:58.668Z","caller":"server/runtime_lua.go:1219","msg":"Allocated minimum Lua runtime pool"}
+{"level":"info","ts":"2026-03-29T07:56:58.668Z","caller":"server/runtime_javascript.go:634","msg":"Initialising JavaScript runtime provider","path":"/nakama/data/modules","entrypoint":"main.js"}
+{"level":"info","ts":"2026-03-29T07:56:58.672Z","caller":"server/runtime_javascript_logger.go:74","msg":"Tic-Tac-Toe module LOADED successfully (FULL SCRIPT)"}
+{"level":"info","ts":"2026-03-29T07:57:09.469Z","caller":"migrate/migrate.go:155","msg":"Database connection","dsn":"postgres://root@cockroachdb:26257/nakama?sslmode=prefer"}
+{"level":"info","ts":"2026-03-29T07:57:09.486Z","caller":"migrate/migrate.go:203","msg":"Database information","version":"CockroachDB CCL v23.1.10 (x86_64-pc-linux-gnu, built 2023/09/14 14:09:38, go1.19.10)"}
+{"level":"info","ts":"2026-03-29T07:57:09.494Z","caller":"migrate/migrate.go:226","msg":"Successfully applied migration","count":0}
+{"level":"warn","ts":"2026-03-29T07:57:09.518Z","caller":"server/config.go:324","msg":"WARNING: insecure default parameter value, change this for production!","param":"console.username"}
+{"level":"warn","ts":"2026-03-29T07:57:09.518Z","caller":"server/config.go:328","msg":"WARNING: insecure default parameter value, change this for production!","param":"console.password"}
+{"level":"warn","ts":"2026-03-29T07:57:09.518Z","caller":"server/config.go:332","msg":"WARNING: insecure default parameter value, change this for production!","param":"console.signing_key"}
+{"level":"warn","ts":"2026-03-29T07:57:09.518Z","caller":"server/config.go:336","msg":"WARNING: insecure default parameter value, change this for production!","param":"socket.server_key"}
+{"level":"warn","ts":"2026-03-29T07:57:09.518Z","caller":"server/config.go:340","msg":"WARNING: insecure default parameter value, change this for production!","param":"session.encryption_key"}
+{"level":"warn","ts":"2026-03-29T07:57:09.518Z","caller":"server/config.go:344","msg":"WARNING: insecure default parameter value, change this for production!","param":"session.refresh_encryption_key"}
+{"level":"warn","ts":"2026-03-29T07:57:09.518Z","caller":"server/config.go:348","msg":"WARNING: insecure default parameter value, change this for production!","param":"runtime.http_key"}
+{"level":"info","ts":"2026-03-29T07:57:09.518Z","caller":"main.go:105","msg":"Nakama starting"}
+{"level":"info","ts":"2026-03-29T07:57:09.518Z","caller":"main.go:106","msg":"Node","name":"nakama1","version":"3.18.0+095c7a66","runtime":"go1.21.3","cpu":12,"proc":12}
+{"level":"info","ts":"2026-03-29T07:57:09.518Z","caller":"main.go:107","msg":"Data directory","path":"/nakama/data"}
+{"level":"info","ts":"2026-03-29T07:57:09.518Z","caller":"main.go:118","msg":"Database connections","dsns":["root@cockroachdb:26257"]}
+{"level":"debug","ts":"2026-03-29T07:57:09.519Z","caller":"server/db.go:74","msg":"Complete database connection URL","raw_url":"postgres://root@cockroachdb:26257/nakama?sslmode=prefer"}
+{"level":"info","ts":"2026-03-29T07:57:09.524Z","caller":"main.go:124","msg":"Database information","version":"CockroachDB CCL v23.1.10 (x86_64-pc-linux-gnu, built 2023/09/14 14:09:38, go1.19.10)"}
+{"level":"info","ts":"2026-03-29T07:57:09.532Z","caller":"server/leaderboard_rank_cache.go:122","msg":"Initializing leaderboard rank cache"}
+{"level":"info","ts":"2026-03-29T07:57:09.533Z","caller":"server/runtime.go:626","msg":"Initialising runtime","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T07:57:09.533Z","caller":"server/leaderboard_rank_cache.go:183","msg":"Leaderboard rank cache initialization completed successfully","cached":[],"skipped":[],"duration":"685.722┬╡s"}
+{"level":"info","ts":"2026-03-29T07:57:09.537Z","caller":"server/runtime.go:633","msg":"Initialising runtime event queue processor"}
+{"level":"info","ts":"2026-03-29T07:57:09.537Z","caller":"server/runtime.go:635","msg":"Runtime event queue processor started","size":65536,"workers":8}
+{"level":"info","ts":"2026-03-29T07:57:09.537Z","caller":"server/runtime_go.go:2671","msg":"Initialising Go runtime provider","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T07:57:09.537Z","caller":"server/runtime_go.go:2695","msg":"Go runtime modules loaded"}
+{"level":"info","ts":"2026-03-29T07:57:09.537Z","caller":"server/runtime_lua.go:115","msg":"Initialising Lua runtime provider","path":"/nakama/data/modules"}
+{"level":"info","ts":"2026-03-29T07:57:09.537Z","caller":"server/runtime_lua.go:1208","msg":"Lua runtime modules loaded"}
+{"level":"info","ts":"2026-03-29T07:57:09.537Z","caller":"server/runtime_lua.go:1211","msg":"Allocating minimum Lua runtime pool","count":16}
+{"level":"info","ts":"2026-03-29T07:57:09.537Z","caller":"server/runtime_lua.go:1219","msg":"Allocated minimum Lua runtime pool"}
+{"level":"info","ts":"2026-03-29T07:57:09.537Z","caller":"server/runtime_javascript.go:634","msg":"Initialising JavaScript runtime provider","path":"/nakama/data/modules","entrypoint":"main.js"}
+{"level":"info","ts":"2026-03-29T07:57:09.542Z","caller":"server/runtime_javascript_logger.go:74","msg":"Tic-Tac-Toe module LOADED successfully (FULL SCRIPT)"}

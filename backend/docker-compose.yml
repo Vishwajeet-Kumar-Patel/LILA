@@ -21,14 +21,15 @@ services:
       - "-ecx"
       - |
         sleep 10
-        /nakama/nakama migrate up --database.address root@cockroachdb:26257 &&
+        /nakama/nakama migrate up --database.address root@cockroachdb:26257 && \
         exec /nakama/nakama \
         --name nakama1 \
         --database.address root@cockroachdb:26257 \
-        --logger.level DEBUG
+        --logger.level DEBUG \
+        --runtime.path /nakama/data/modules \
+        --runtime.js_entrypoint main.js
     volumes:
-      - ./data:/nakama/data
-      - ./build:/nakama/data/modules
+      - ./modules:/nakama/data/modules
     ports:
       - "7349:7349"
       - "7350:7350"
