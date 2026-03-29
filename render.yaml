@@ -3,7 +3,7 @@ services:
     name: lila-backend
     runtime: docker
     dockerContext: backend
-    dockerfilePath: Dockerfile
+    dockerfilePath: backend/Dockerfile
     plan: free
     envVars:
       - key: NAKAMA_DATABASE_ADDRESS
