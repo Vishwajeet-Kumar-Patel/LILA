@@ -14,12 +14,23 @@ const GameBoard: React.FC<GameBoardProps> = ({ matchId, onReset }) => {
     const [mySymbol, setMySymbol] = useState<number | null>(null);
     const [timer, setTimer] = useState(30);
 
+    // Define OpCodes (must match backend)
+    const OP_MOVE = 1;
+    const OP_UPDATE = 2;
+    const OP_REJECT_MOVE = 3;
+    const OP_GAME_OVER = 4;
+
     useEffect(() => {
         if (!nakamaService.socket) return;
 
         nakamaService.socket.onmatchdata = (matchData) => {
             const data = JSON.parse(new TextDecoder().decode(matchData.data));
-            console.log("Match Data Received:", data);
+            console.log(`[MATCH ${matchId}] OP ${matchData.op_code} Data:`, data);
+
+            if (matchData.op_code === OP_REJECT_MOVE) {
+                console.warn("SERVER REJECTED MOVE:", data.error);
+                return;
+            }
 
             if (data.board) setBoard(data.board);
             if (data.turn) setTurn(data.turn);
@@ -30,14 +41,13 @@ const GameBoard: React.FC<GameBoardProps> = ({ matchId, onReset }) => {
             // Assign my symbol
             if (data.playerMarkers && nakamaService.session?.user_id) {
                 const myMark = data.playerMarkers[nakamaService.session.user_id];
-                if (myMark) setMySymbol(myMark);
-            }
-
-            if (data.reason) {
-                console.log("Game End Reason:", data.reason);
+                if (myMark) {
+                    setMySymbol(myMark);
+                    console.log("MY SYMBOL SET TO:", myMark === 1 ? 'X' : 'O');
+                }
             }
         };
-    }, []);
+    }, [matchId]);
 
     const handleCellClick = async (index: number) => {
         if (status !== 1 || board[index] !== 0 || turn !== mySymbol) {
@@ -47,6 +57,14 @@ const GameBoard: React.FC<GameBoardProps> = ({ matchId, onReset }) => {
 
         const moveData = { position: index };
         await nakamaService.socket?.sendMatchState(matchId, 1, JSON.stringify(moveData));
+    };
+
+    const [copied, setCopied] = useState(false);
+    
+    const handleCopyId = () => {
+        navigator.clipboard.writeText(matchId);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
     };
 
     const getSymbol = (val: number) => {
@@ -60,14 +78,26 @@ const GameBoard: React.FC<GameBoardProps> = ({ matchId, onReset }) => {
             <div className="status-bar">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span className={`badge ${status === 1 ? 'badge-playing' : 'badge-waiting'}`}>
-                        {status === 0 ? '🕒 Waiting' : status === 1 ? '🎮 Playing' : '🏁 Finished'}
+                        {status === 0 ? '🕒 WAITING' : status === 1 ? '🎮 PLAYING' : '🏁 FINISHED'}
                     </span>
-                    <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>
-                        ID: {matchId.substring(0, 8)}...
-                    </span>
+                    <div 
+                        className="match-id-container" 
+                        onClick={handleCopyId}
+                        style={{ position: 'relative' }}
+                        title={matchId}
+                    >
+                        {copied && <span className="copied-toast">📋 COPIED!</span>}
+                        <span className="match-id-text">
+                            ID: {matchId.substring(0, 8)}...
+                        </span>
+                        <svg className="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                        </svg>
+                    </div>
                 </div>
-                <div style={{ color: timer < 10 ? '#f43f5e' : 'white', fontWeight: 600 }}>
-                    ⏳ {timer}s
+                <div style={{ color: timer < 10 ? '#f43f5e' : 'white', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    ⌛ <span style={{ fontFamily: 'Orbitron', minWidth: '35px' }}>{timer}s</span>
                 </div>
             </div>
 

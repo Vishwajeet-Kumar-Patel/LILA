@@ -96,12 +96,19 @@ const matchJoin: nkruntime.MatchJoinFunction<GameState> = function (
   if (state.players[0] && state.players[1]) {
     state.status = GameStatus.PLAYING;
     state.timer = 30;
+
+    const playerMarkers: {[key: string]: number} = {};
+    state.players.forEach(p => {
+        if (p) playerMarkers[p.presence.userId] = p.mark;
+    });
+
     dispatcher.broadcastMessage(OpCode.UPDATE, JSON.stringify({
         board: state.board,
         turn: state.turn,
         status: state.status,
         winner: state.winner,
-        timer: state.timer
+        timer: state.timer,
+        playerMarkers: playerMarkers
     }));
   }
   return { state };
